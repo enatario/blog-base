@@ -1,0 +1,4 @@
+<h1>{{ title or post.data.title }}</h1>
+<address>{{ place or post.data.place }}</address>
+{% set postDate = date or post.date %}
+<time datetime="{{ postDate | htmlDateString }}">{{ postDate | readableDate}}</time>

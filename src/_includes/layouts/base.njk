@@ -4,19 +4,18 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>{{ metadata.title }}</title>
-  <meta name="description" content="{{ metadata.description }}">
+  <title>{{ title or metadata.title }}</title>
+  <meta name="description" content="{{ descripton or metadata.description }}">
   <meta name="author" content="{{ metadata.author }}" />
-  <meta property="og:title" content="{{ metadata.title }}">
-  <meta property="og:description" content="{{ metadata.description }}">
+  <meta property="og:title" content="{{ title or metadata.title }}">
+  <meta property="og:description" content="{{ description or metadata.description }}">
   <meta property="og:type" content="website">
   <meta property="og:url" content="{{ metadata.url }}">
   <link rel="stylesheet" href="/app.css" as="style">
 </head>
 <body>
-  <main>
-    {{ content | safe }}
-  </main>
+  {%  include "header.njk" %}
+  {{ content | safe }}
   <script type="text/javascript" src="/app.js" async></script>
 </body>
 </html>

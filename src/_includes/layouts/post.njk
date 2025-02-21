@@ -1,0 +1,25 @@
+---
+layout: layouts/base.njk
+---
+
+<main>
+  <article>
+    {%  include "posthead.njk" %}
+    {{ content | safe }}
+  </article>
+</main>
+<footer>
+  <nav>
+  {%- if collections.posts %}
+  {%- set previousPost = collections.posts | getPreviousCollectionItem %}
+  {%- set nextPost = collections.posts | getNextCollectionItem %}
+  {%- if nextPost or previousPost %}
+    <ul>
+    {%- if previousPost %}
+      <li>← Previous<br><a href="{{ previousPost.url }}">{{ previousPost.data.title }}</a></li>{% endif %}
+    {%- if nextPost %}<li>Next →<br><a href="{{ nextPost.url }}">{{ nextPost.data.title }}</a></li>{% endif %}
+    </ul>
+  {%- endif %}
+  {%- endif %}
+  </nav>
+</footer>
