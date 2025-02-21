@@ -29,6 +29,14 @@ export default function(eleventyConfig) {
   eleventyConfig.addFilter('htmlDateString', (dateObj) => {
     return DateTime.fromJSDate(dateObj, {zone: 'utc'}).toFormat('yyyy-LL-dd');
   });
+
+  eleventyConfig.addFilter("filterTagList", function filterTagList(tags) {
+    return (tags || []).filter(tag => ["all", "posts"].indexOf(tag) === -1);
+  });
+
+  eleventyConfig.addFilter("sortAlphabetically", strings =>
+    (strings || []).sort((b, a) => b.localeCompare(a))
+  );
   
   return {
     templateFormats: [
