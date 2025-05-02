@@ -1,5 +1,5 @@
-# Eleventy base
-A foundational static site generator using [11ty].
+# Blog base
+A foundational blog generator using [11ty].
 
 Includes:
 * SCSS
