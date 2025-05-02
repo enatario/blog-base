@@ -2,12 +2,11 @@
 layout: layouts/base.njk
 ---
 
-<main>
-  <article>
-    {%  include "posthead.njk" %}
-    {{ content | safe }}
-  </article>
-</main>
+
+<article>
+  {%  include "posthead.njk" %}
+  {{ content | safe }}
+</article>
 <footer>
   <nav>
     {%  include "postsprogress.njk" %}

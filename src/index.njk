@@ -2,15 +2,13 @@
 layout: layouts/base.njk
 ---
 
-<main>
-  <article>
-  {% for post in collections.posts | head(-1) %}
-    <p>Latest</p>
-    {%  include "posthead.njk" %}
-    {{ post.templateContent | safe }}
-  {% endfor %}
-  </article>
-</main>
+<article>
+{% for post in collections.posts | head(-1) %}
+  <p>Latest</p>
+  {%  include "posthead.njk" %}
+  {{ post.templateContent | safe }}
+{% endfor %}
+</article>
 <footer>
   <nav>
     {%  include "postslist.njk" %}
