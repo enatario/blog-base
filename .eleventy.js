@@ -63,44 +63,41 @@ export default function(eleventyConfig) {
 
   eleventyConfig.addNunjucksAsyncShortcode(
     "figure",
-    async function(src, alt, className = "", caption = "") {
-      let inputPath = this.page.inputPath;
-      let inputDir = path.dirname(inputPath);
-      let fullSrc = path.join(inputDir, src);
+    async function(images, className = "", caption = "") {
+      let renderedImages = [];
 
-      // Generate optimized versions
-      let metadata = await Image(fullSrc, {
-        widths: [20, 400, 800, 1200, null],
-        formats: ["avif", "webp", "jpeg"],
-        outputDir: "./dist/img/",
-        urlPath: "/img/",
-      });
+      for (let { src, alt } of images) {
+        let inputPath = this.page.inputPath;
+        let inputDir = path.dirname(inputPath);
+        let fullSrc = path.join(inputDir, src);
 
-      const smallestFormat = Object.keys(metadata)[0];
-      const smallestWidth = Math.min(
-        ...Object.keys(metadata[smallestFormat]).map((w) => parseInt(w))
-      );
-      const blurDataURL = metadata[smallestFormat][smallestWidth].source;
+        // Generate optimized versions
+        let metadata = await Image(fullSrc, {
+          widths: [400, 800, 1200, null],
+          formats: ["avif", "webp", "jpeg"],
+          outputDir: "./dist/img/",
+          urlPath: "/img/",
+        });
 
-      // Default attributes for <img>
-      let imageAttributes = {
-        alt,
-        loading: "lazy",
-        decoding: "async",
-        sizes: "100vw",
-      };
+        let imageAttributes = {
+          alt,
+          loading: "lazy",
+          decoding: "async",
+          sizes: "100vw",
+        };
 
-      let imageHtml = Image.generateHTML(metadata, imageAttributes);
+        renderedImages.push(Image.generateHTML(metadata, imageAttributes));
+      }
 
       return `
         <figure class="${className}">
-          ${imageHtml}
+          ${renderedImages.join("\n")}
           ${caption ? `<figcaption>${caption}</figcaption>` : ""}
         </figure>
       `;
     }
   );
-  
+    
   return {
     templateFormats: [
       "md",

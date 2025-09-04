@@ -9,4 +9,11 @@ tags:
 ---
 hi hi hi
 
-{% figure "./images/emily.jpg", "A scenic view", "figure--wide", "Photo by me" %}
+{% figure
+  [
+    { "src": "./images/emily.jpg", "alt": "First view" },
+    { "src": "./images/emily.jpg", "alt": "Second view" }
+  ],
+  "figure--gallery",
+  "A two-photo layout"
+%}
