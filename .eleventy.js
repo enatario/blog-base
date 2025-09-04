@@ -1,5 +1,7 @@
 import { DateTime } from "luxon";
 import { feedPlugin } from "@11ty/eleventy-plugin-rss";
+import Image from '@11ty/eleventy-img';
+import path from "path";
 
 export default function(eleventyConfig) {
   eleventyConfig.addWatchTarget("./src/css/");
@@ -58,6 +60,46 @@ export default function(eleventyConfig) {
       }
     }
   });
+
+  eleventyConfig.addNunjucksAsyncShortcode(
+    "figure",
+    async function(src, alt, className = "", caption = "") {
+      let inputPath = this.page.inputPath;
+      let inputDir = path.dirname(inputPath);
+      let fullSrc = path.join(inputDir, src);
+
+      // Generate optimized versions
+      let metadata = await Image(fullSrc, {
+        widths: [20, 400, 800, 1200, null],
+        formats: ["avif", "webp", "jpeg"],
+        outputDir: "./dist/img/",
+        urlPath: "/img/",
+      });
+
+      const smallestFormat = Object.keys(metadata)[0];
+      const smallestWidth = Math.min(
+        ...Object.keys(metadata[smallestFormat]).map((w) => parseInt(w))
+      );
+      const blurDataURL = metadata[smallestFormat][smallestWidth].source;
+
+      // Default attributes for <img>
+      let imageAttributes = {
+        alt,
+        loading: "lazy",
+        decoding: "async",
+        sizes: "100vw",
+      };
+
+      let imageHtml = Image.generateHTML(metadata, imageAttributes);
+
+      return `
+        <figure class="${className}">
+          ${imageHtml}
+          ${caption ? `<figcaption>${caption}</figcaption>` : ""}
+        </figure>
+      `;
+    }
+  );
   
   return {
     templateFormats: [
