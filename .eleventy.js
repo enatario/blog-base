@@ -1,6 +1,7 @@
 import { DateTime } from "luxon";
 import { feedPlugin } from "@11ty/eleventy-plugin-rss";
 import Image from '@11ty/eleventy-img';
+import lightningcssPlugin from "@11tyrocks/eleventy-plugin-lightningcss";
 import path from "path";
 
 export default function(eleventyConfig) {
@@ -41,6 +42,16 @@ export default function(eleventyConfig) {
   eleventyConfig.addFilter("sortAlphabetically", strings =>
     (strings || []).sort((b, a) => b.localeCompare(a))
   );
+
+  eleventyConfig.addPlugin(lightningcssPlugin, {
+    src: "src/css/app.css",
+
+    lightningcssOptions: {
+      minify: true,
+      sourceMap: true,
+      targets: "defaults"
+    }
+  });
 
   eleventyConfig.addPlugin(feedPlugin, {
     type: "atom", // or "rss", "json"
