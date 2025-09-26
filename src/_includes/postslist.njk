@@ -1,6 +1,9 @@
 <ol reversed>
-{% for post in collections.posts | reverse %}
-  {% if loop.index > 1 %}
+{% set reversedPosts = collections.posts | reverse %}
+{% set latest = reversedPosts | first %}
+
+{% for post in reversedPosts %}
+  {% if (page.url != post.url) and (page.url != "/" or post.url != latest.url) %}
   <li>
     <a href="{{ post.url }}">
       {% if post.data.title %}
