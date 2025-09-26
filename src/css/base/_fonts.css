@@ -1,0 +1,7 @@
+@font-face {
+  font-display: swap ;
+  font-family: "Fragment";
+  font-style: normal;
+  font-weight: 400;
+  src: url("../static/fonts/PPFragment-SansRegular.woff2") format("woff2");
+}

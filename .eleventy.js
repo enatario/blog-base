@@ -90,8 +90,17 @@ export default function(eleventyConfig) {
           urlPath: "/img/",
         });
 
+        const formatKey = Object.keys(metadata)[0];
+        const largest = metadata[formatKey][metadata[formatKey].length - 1];
+
+        const isPortrait = largest.height > largest.width;
+        const aspectRatio = isPortrait ? "2 / 3" : "3 / 2";
+
+
+
         let imageAttributes = {
           alt,
+          style: `aspect-ratio: ${aspectRatio};`,
           loading: "lazy",
           decoding: "async",
           sizes: "100vw",

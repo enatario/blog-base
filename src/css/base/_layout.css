@@ -1,0 +1,28 @@
+body {
+  display: grid;
+  grid-template-columns: minmax(auto, var(--container--base));
+  justify-content: center;
+  padding: var(--space--base);
+}
+
+header {
+  padding: var(--space--base) 0;
+
+  p {
+    margin: 0;
+  }
+}
+
+.kicker {
+  align-items: center;
+  display: flex;
+  gap: var(--space--small);
+
+  &::after {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 1px;
+    background: blue;
+  }
+}

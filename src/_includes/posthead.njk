@@ -1,8 +1,17 @@
 <h1>{{ title or post.data.title }}</h1>
-<address>{{ place or post.data.place }}</address>
-{% set postDate = date or post.date %}
-<time datetime="{{ postDate | htmlDateString }}">{{ postDate | readableDate}}</time>
-{%- for tag in tags | filterTagList %}
-{%- set tagUrl %}/tags/{{ tag | slugify }}/{% endset %}
-<li><a href="{{ tagUrl }}">{{ tag }}</a>{%- if not loop.last %}, {% endif %}</li>
-{%- endfor %}
+
+<aside>
+  <address class="meta">{{ place or post.data.place }}</address>
+
+  {% set postDate = date or post.date %}
+  <time class="meta" datetime="{{ postDate | htmlDateString }}">{{ postDate | readableDate}}</time>
+</aside>
+
+<ul>
+  {%- for tag in tags | filterTagList or post.data.tags | filterTagList %}
+  {%- set tagUrl %}/tags/{{ tag | slugify }}/{% endset %}
+  <li>
+    <a href="{{ tagUrl }}">{{ tag }}</a>
+  </li>
+  {%- endfor %}
+</ul>

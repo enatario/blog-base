@@ -4,12 +4,13 @@ layout: layouts/base.njk
 
 <article>
 {% for post in collections.posts | head(-1) %}
-  <p>Latest</p>
+  <p class="kicker">Latest</p>
   {%  include "posthead.njk" %}
   {{ post.templateContent | safe }}
 {% endfor %}
 </article>
 <footer>
+  <h2>Most recent posts</h2>
   <nav>
     {%  include "postslist.njk" %}
   </nav>

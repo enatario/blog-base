@@ -5,15 +5,22 @@ date: 2025-12-11
 tags: 
   - food
   - fun
-  - family
 ---
 hi hi hi
 
+[a test link](#test)
+
 {% figure
   [
-    { "src": "./images/emily.jpg", "alt": "First view" },
-    { "src": "./images/emily.jpg", "alt": "Second view" }
+    { "src": "./images/emily.jpg", "alt": "First view", "style": "width: 50%" },
+    { "src": "./images/emily.jpg", "alt": "Second view", "style": "width: 50%" }
   ],
-  "figure--gallery",
+  "figure--single",
   "A two-photo layout"
 %}
+
+<div id="test">
+Test
+
+a test goes here
+</div>
