@@ -8,7 +8,8 @@
 </aside>
 
 <ul>
-  {%- for tag in tags | filterTagList or post.data.tags | filterTagList %}
+  {% set postTags = tags or post.data.tags %}
+  {%- for tag in postTags | filterTagList %}
   {%- set tagUrl %}/tags/{{ tag | slugify }}/{% endset %}
   <li>
     <a href="{{ tagUrl }}">{{ tag }}</a>

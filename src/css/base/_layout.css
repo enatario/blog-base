@@ -13,24 +13,14 @@ header {
   }
 }
 
-.kicker {
-  align-items: center;
-  display: flex;
-  gap: var(--space--small);
-
-  &::after {
-    content: "";
-    display: block;
-    width: 100%;
-    height: 1px;
-    background: blue;
-  }
-}
-
 .figure-block {
   display: grid;
+  justify-content: center;
   gap: var(--space--x-small);
-  grid-template-columns: repeat(3, 1fr);
+
+  @media screen and (min-width: 50em) {
+    grid-template-columns: repeat(3, 1fr);
+  }
 
   figcaption {
     grid-column: 1 / -1;
@@ -38,13 +28,19 @@ header {
 }
 
 .figure-block__image--single {
-  grid-column: span 1;
+  @media screen and (min-width: 50em) {
+    grid-column: span 1;
+  }
 }
 
 .figure-block__image--double {
-  grid-column: span 2;
+  @media screen and (min-width: 50em) {
+    grid-column: span 2;
+  }
 }
 
 .figure-block__image--full {
-  grid-column: 1 / -1;
+  @media screen and (min-width: 50em) {
+    grid-column: 1 / -1;
+  }
 }
