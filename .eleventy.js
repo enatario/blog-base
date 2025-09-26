@@ -74,10 +74,10 @@ export default function(eleventyConfig) {
 
   eleventyConfig.addNunjucksAsyncShortcode(
     "figure",
-    async function(images, className = "", caption = "") {
+    async function(images, caption = "") {
       let renderedImages = [];
 
-      for (let { src, alt } of images) {
+      for (let { src, alt, className = "" } of images) {
         let inputPath = this.page.inputPath;
         let inputDir = path.dirname(inputPath);
         let fullSrc = path.join(inputDir, src);
@@ -94,23 +94,28 @@ export default function(eleventyConfig) {
         const largest = metadata[formatKey][metadata[formatKey].length - 1];
 
         const isPortrait = largest.height > largest.width;
-        const aspectRatio = isPortrait ? "2 / 3" : "3 / 2";
-
-
+        const gridSpan = isPortrait ? "single" : "double";
 
         let imageAttributes = {
           alt,
-          style: `aspect-ratio: ${aspectRatio};`,
+          style: "height: 100%; object-fit: cover;",
           loading: "lazy",
           decoding: "async",
           sizes: "100vw",
         };
 
-        renderedImages.push(Image.generateHTML(metadata, imageAttributes));
+        let imageHtml = Image.generateHTML(metadata, imageAttributes);
+
+        imageHtml = imageHtml.replace(
+          "<picture",
+          `<picture class="figure-block__image figure-block__image--${gridSpan} ${className}"`
+        );
+
+        renderedImages.push(imageHtml);
       }
 
       return `
-        <figure class="${className}">
+        <figure class="figure-block">
           ${renderedImages.join("\n")}
           ${caption ? `<figcaption>${caption}</figcaption>` : ""}
         </figure>

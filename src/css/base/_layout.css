@@ -26,3 +26,25 @@ header {
     background: blue;
   }
 }
+
+.figure-block {
+  display: grid;
+  gap: var(--space--x-small);
+  grid-template-columns: repeat(3, 1fr);
+
+  figcaption {
+    grid-column: 1 / -1;
+  }
+}
+
+.figure-block__image--single {
+  grid-column: span 1;
+}
+
+.figure-block__image--double {
+  grid-column: span 2;
+}
+
+.figure-block__image--full {
+  grid-column: 1 / -1;
+}
