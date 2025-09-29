@@ -15,6 +15,10 @@
 @import "base/_tables.css";
 @import "base/_typography.css";
 
+/* Components */
+@import "components/_figure-block.css";
+@import "components/_tags.css";
+
 /* Utilities */
 @import "utilities/_hide-visually.css";
 

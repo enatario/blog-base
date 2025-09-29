@@ -1,17 +1,17 @@
 <h1>{{ title or post.data.title }}</h1>
 
-<aside>
-  <address class="meta">{{ place or post.data.place }}</address>
+<aside class="article__aside">
+  <address>{{ place or post.data.place }}</address>
 
   {% set postDate = date or post.date %}
-  <time class="meta" datetime="{{ postDate | htmlDateString }}">{{ postDate | readableDate}}</time>
+  <time datetime="{{ postDate | htmlDateString }}">{{ postDate | readableDate}}</time>
 </aside>
 
-<ul>
+<ul class="tags">
   {% set postTags = tags or post.data.tags %}
   {%- for tag in postTags | filterTagList %}
   {%- set tagUrl %}/tags/{{ tag | slugify }}/{% endset %}
-  <li>
+  <li class="tags__item">
     <a href="{{ tagUrl }}">{{ tag }}</a>
   </li>
   {%- endfor %}

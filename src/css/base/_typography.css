@@ -16,12 +16,15 @@ h2,
 h3,
 h4,
 strong {
-  font-weight: var(--font-weight--bold);
+  font-weight: var(--font-weight--normal);
+}
+
+h1 {
+  font-size: var(--font-size--display);
 }
 
 label {
   font-size: var(--font-size--ui);
-  font-weight: var(--font-weight--bold);
   text-align: left;
 }
 
@@ -31,7 +34,6 @@ input {
 
 legend {
   font-size: var(--font-size--body);
-  font-weight: var(--font-weight--bold);
 }
 
 hr {
@@ -39,14 +41,19 @@ hr {
   width: 100%;
 }
 
+time {
+  font-size: var(--font-size--small);
+}
+
 address {
+  font-size: var(--font-size--small);
   font-style: normal;
 }
 
-.kicker {
+figcaption {
   font-size: var(--font-size--small);
 }
 
-.meta {
-  font-size: var(--font-size--small);
+a {
+  color: var(--color--text);
 }

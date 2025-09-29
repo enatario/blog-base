@@ -1,0 +1,31 @@
+.figure-block {
+  display: grid;
+  justify-content: center;
+  gap: var(--space--x-small);
+
+  @media screen and (min-width: 50em) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  figcaption {
+    grid-column: 1 / -1;
+  }
+}
+
+.figure-block__image--single {
+  @media screen and (min-width: 50em) {
+    grid-column: span 1;
+  }
+}
+
+.figure-block__image--double {
+  @media screen and (min-width: 50em) {
+    grid-column: span 2;
+  }
+}
+
+.figure-block__image--full {
+  @media screen and (min-width: 50em) {
+    grid-column: 1 / -1;
+  }
+}

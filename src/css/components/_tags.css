@@ -1,0 +1,19 @@
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space--small);
+  padding: var(--space--base) 0;
+}
+
+.tags__item a {
+  border: var(--border--base);
+  border-radius: var(--border-radius--small);
+  font-size: var(--font-size--small);
+  padding: var(--space--x-small);
+  transition: var(--transition-duration--base) var(--transition-timing--base) background-color;
+  text-decoration: none;
+
+  &:hover {
+    background-color: var(--color--primary-light);
+  }
+}

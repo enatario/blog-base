@@ -2,9 +2,8 @@
 layout: layouts/base.njk
 ---
 
-<article>
+<article class="article">
 {% for post in collections.posts | head(-1) %}
-  <p class="kicker">Latest</p>
   {%  include "posthead.njk" %}
   {{ post.templateContent | safe }}
 {% endfor %}
